@@ -1,10 +1,13 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class Basket {
     private WebDriver webDriver;
+    private JavascriptExecutor js;
     private final By buttonIncreaseProduct = By.className("increase");
     private final By buttonDecreaseProduct = By.className("decrease");
     private final By labelTotalProduct = By.id("quantityInput");
@@ -18,9 +21,23 @@ public class Basket {
 
     public Basket (WebDriver webDriver) {
         this.webDriver = webDriver;
+        this.js = (JavascriptExecutor) webDriver;
     }
 
     public void addQuantityProduct() {
+        WebElement element = webDriver.findElement(buttonIncreaseProduct);
+        element.click();
+    }
 
+    public String getTotalProductAddedOrDeleted () {
+        WebElement element = webDriver.findElement(labelTotalProduct);
+        return element.getText();
+    }
+
+    public void addWarranty (){
+        WebElement element = webDriver.findElement(DropdownWarranty);
+        js.executeScript("arguments[0].scrollIntoView();", element);
+        element.click();
+        System.out.println("hola");
     }
 }

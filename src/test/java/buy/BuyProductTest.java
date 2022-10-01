@@ -15,6 +15,9 @@ public class BuyProductTest extends BaseTest {
         CategoryResult categoryResult =  mainPageFalabella.searchAProduct("televisor samsung");
         categoryResult.selectProduct();
         Basket basket = categoryResult.viewProductCard();
+        basket.addQuantityProduct();
+        basket.getTotalProductAddedOrDeleted();
+        basket.addWarranty();
 
     }
 }
