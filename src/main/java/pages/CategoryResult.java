@@ -20,6 +20,8 @@ public class CategoryResult {
 
     private final By buttonViewProductCard = By.xpath("//div[@id='testId-searchResults']//a[@id='linkButton']");
 
+    private final By buttonCloseProduct = By.xpath("//*[@id='testId-searchResults']/div[1]/div/div/div/div/div[1]/button/i");
+
     public CategoryResult(WebDriver webDriver) {
 
         this.webDriver = webDriver;
@@ -35,6 +37,13 @@ public class CategoryResult {
         w.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='testId-searchResults-products']")));
         WebElement element = webDriver.findElement(buttonProductToBuy);
         js.executeScript("arguments[0].scrollIntoView();", element);
+        element.click();
+    }
+
+    public void closeAddProductPopup(){
+        w = new WebDriverWait(this.webDriver, 5);
+        w.until(ExpectedConditions.presenceOfElementLocated(buttonCloseProduct));
+        WebElement element = webDriver.findElement(buttonCloseProduct);
         element.click();
     }
 

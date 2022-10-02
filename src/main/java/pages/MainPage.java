@@ -16,6 +16,7 @@ public class MainPage {
     private By inputTextSearchProduct = By.id("testId-SearchBar-Input");
     private By buttonSearchProduct = By.xpath("//div[@id='testId-search-wrapper']//button");
     private By buttonPopupNoSubscribe = By.xpath("//div[@class='airship-html-prompt-shadow']");
+    private By quantityProductInBasket = By.xpath("//li[@id='testId-UserAction-basket']//i");
 
     public MainPage(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -25,6 +26,12 @@ public class MainPage {
         shadow = new Shadow(webDriver);
         WebElement element = shadow.findElementByXPath("//button[@class='airship-btn airship-btn-deny']");
         element.click();
+    }
+
+    public String getQuantityProductInBasket(){
+        WebElement element = webDriver.findElement(quantityProductInBasket);
+        String productInBasket = element.getAttribute("data-count");
+        return productInBasket;
     }
 
     public CategoryResult searchAProduct(String product) {
