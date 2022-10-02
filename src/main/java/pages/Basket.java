@@ -34,10 +34,21 @@ public class Basket {
         return element.getText();
     }
 
-    public void addWarranty (){
+    public void selectWarrantyDropdown (){
         WebElement element = webDriver.findElement(DropdownWarranty);
         js.executeScript("arguments[0].scrollIntoView();", element);
         element.click();
-        System.out.println("hola");
     }
+
+    public void selectTypeWarranty () {
+        WebElement element = webDriver.findElement(textSelectedWarrantyOneYear);
+        element.click();
+    }
+
+    public CheckoutProduct selectButtonGoToBuy() {
+        WebElement element = webDriver.findElement(goToBuyProduct);
+        element.click();
+        return new CheckoutProduct(this.webDriver);
+    }
+
 }

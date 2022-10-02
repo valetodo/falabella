@@ -14,13 +14,6 @@ public abstract class BaseTest {
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
         webDriver.get("https://www.google.com/");
-//        WebElement p=webDriver.findElement(By.name("q"));
-//        p.sendKeys("falabella colombia");
-//        WebDriverWait w = new WebDriverWait(webDriver, 5);
-//        w.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h3[text()='Lo encontré en Falabella.com']")));
-//        WebElement ingresar = webDriver.findElement(By.xpath("//h3[text()='Lo encontré en Falabella.com']"));
-//        ingresar.click();
-//        p.submit();
     }
 
     @AfterMethod

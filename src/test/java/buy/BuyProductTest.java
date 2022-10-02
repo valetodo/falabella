@@ -2,9 +2,7 @@ package buy;
 
 import base.BaseTest;
 import org.testng.annotations.Test;
-import pages.Basket;
-import pages.CategoryResult;
-import pages.MainPage;
+import pages.*;
 
 public class BuyProductTest extends BaseTest {
 
@@ -17,7 +15,20 @@ public class BuyProductTest extends BaseTest {
         Basket basket = categoryResult.viewProductCard();
         basket.addQuantityProduct();
         basket.getTotalProductAddedOrDeleted();
-        basket.addWarranty();
+        basket.selectWarrantyDropdown();
+        basket.selectTypeWarranty();
+        CheckoutProduct checkoutProduct = basket.selectButtonGoToBuy();
+        checkoutProduct.selectDropdownListDepartamento();
+        checkoutProduct.selectDepartamento("CAQUETA");
+        checkoutProduct.selectDropdownListCiudad();
+        checkoutProduct.selectCiudad("FLORENCIA");
+        checkoutProduct.selectDropdownListBarrio();
+        checkoutProduct.selectBarrio("FLORENCIA");
+        checkoutProduct.selectButtonContinuar();
+        checkoutProduct.addAddress("calle 3 floristas");
+        checkoutProduct.addDepartmentNumber("edificio blanco / piso 4");
+        checkoutProduct.selectButtonSetDirection();
+        CheckoutPayment checkoutPayment = checkoutProduct.continueCheckToBuy();
 
     }
 }

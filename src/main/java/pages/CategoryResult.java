@@ -39,8 +39,9 @@ public class CategoryResult {
     }
 
     public Basket viewProductCard() {
+        w = new WebDriverWait(this.webDriver, 5);
+        w.until(ExpectedConditions.presenceOfElementLocated(buttonViewProductCard));
         WebElement element = webDriver.findElement(buttonViewProductCard);
-        webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         element.click();
         return new Basket(webDriver);
     }
