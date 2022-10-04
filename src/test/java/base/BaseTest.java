@@ -2,17 +2,16 @@ package base;
 
 import com.aventstack.extentreports.Status;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 import report.ReportManager;
 import helper.ScreenShotHelper;
+import webDrivers.DriveFactory;
 
 public abstract class BaseTest {
     protected WebDriver webDriver;
+    protected DriveFactory driveFactory;
 
     @BeforeSuite
     public static void setUpSuite() throws Exception {
@@ -20,12 +19,11 @@ public abstract class BaseTest {
     }
 
     @BeforeMethod
-    public void setUp(ITestResult iTestResult){
-
+    @Parameters({"browser"})
+    public void setUp(ITestResult iTestResult, String browser){
         ReportManager.getInstance().startTest(iTestResult.getMethod().getMethodName());
-
-        System.setProperty("webdriver.chrome.driver","src/main/resources/chromedriver.exe");
-        webDriver = new ChromeDriver();
+        driveFactory = new DriveFactory();
+        webDriver = driveFactory.getWebDriver(browser);
         webDriver.manage().window().maximize();
         webDriver.get("https://www.google.com/");
     }
