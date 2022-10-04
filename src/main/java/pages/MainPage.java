@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 public class MainPage {
 
     WebDriverWait wait;
@@ -46,7 +48,7 @@ public class MainPage {
         WebElement element = webDriver.findElement(By.name("q"));
         element.sendKeys(pageToSearch);
         element.submit();
-        WebDriverWait w = new WebDriverWait(webDriver, 10);
+        WebDriverWait w = new WebDriverWait(webDriver, Duration.ofSeconds(10));
         w.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h3[text()='Lo encontré en Falabella.com']")));
         WebElement page = webDriver.findElement(By.xpath("//h3[text()='Lo encontré en Falabella.com']"));
         page.click();

@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class CategoryResult {
@@ -33,7 +34,7 @@ public class CategoryResult {
     }
 
     public void selectProduct() {
-        w = new WebDriverWait(this.webDriver, 3);
+        w = new WebDriverWait(this.webDriver, Duration.ofSeconds(3));
         w.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='testId-searchResults-products']")));
         WebElement element = webDriver.findElement(buttonProductToBuy);
         js.executeScript("arguments[0].scrollIntoView();", element);
@@ -41,14 +42,14 @@ public class CategoryResult {
     }
 
     public void closeAddProductPopup(){
-        w = new WebDriverWait(this.webDriver, 5);
+        w = new WebDriverWait(this.webDriver, Duration.ofSeconds(5));
         w.until(ExpectedConditions.presenceOfElementLocated(buttonCloseProduct));
         WebElement element = webDriver.findElement(buttonCloseProduct);
         element.click();
     }
 
     public Basket viewProductCard() {
-        w = new WebDriverWait(this.webDriver, 5);
+        w = new WebDriverWait(this.webDriver, Duration.ofSeconds(5));
         w.until(ExpectedConditions.presenceOfElementLocated(buttonViewProductCard));
         WebElement element = webDriver.findElement(buttonViewProductCard);
         element.click();
